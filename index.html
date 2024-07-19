@@ -7,7 +7,6 @@
     <style>
         body {
             background-image: url("Love.avif");
-
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -15,7 +14,7 @@
             height: 100vh;
             margin: 0;
         }
-        .pr{
+        .pr {
             font-size: 25px;
         }
         .container {
@@ -47,13 +46,17 @@
         const submitBtn = document.getElementById('submit-btn');
         const agreement = document.getElementById('agreement');
 
+        function moveButton() {
+            const x = Math.floor(Math.random() * (window.innerWidth - submitBtn.offsetWidth));
+            const y = Math.floor(Math.random() * (window.innerHeight - submitBtn.offsetHeight));
+            submitBtn.style.left = `${x}px`;
+            submitBtn.style.top = `${y}px`;
+            submitBtn.style.position = 'absolute';
+        }
+
         submitBtn.addEventListener('mouseover', () => {
             if (agreement.value !== 'yes') {
-                const x = Math.floor(Math.random() * (window.innerWidth - submitBtn.offsetWidth));
-                const y = Math.floor(Math.random() * (window.innerHeight - submitBtn.offsetHeight));
-                submitBtn.style.left = `${x}px`;
-                submitBtn.style.top = `${y}px`;
-                submitBtn.style.position = 'absolute';
+                moveButton();
             }
         });
 
@@ -61,8 +64,8 @@
             if (agreement.value !== 'yes') {
                 e.preventDefault();
                 alert('Please agree to the terms and conditions.');
-            }
-            else {
+                moveButton();
+            } else {
                 window.location.href = 'love.html';
             }
         });
