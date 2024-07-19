@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Form</title>
+    <style>
+        body {
+            background-image: url("Love.avif");
+
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .pr{
+            font-size: 25px;
+        }
+        .container {
+            text-align: center;
+        }
+        #submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            color: rgb(234, 25, 36);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- <h1>Interactive Form</h1> -->
+        <p class="pr">Do you love me?</p>
+        <select id="agreement">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+        <br>
+        <button id="submit-btn">Submit</button>
+    </div>
+
+    <script>
+        const submitBtn = document.getElementById('submit-btn');
+        const agreement = document.getElementById('agreement');
+
+        submitBtn.addEventListener('mouseover', () => {
+            if (agreement.value !== 'yes') {
+                const x = Math.floor(Math.random() * (window.innerWidth - submitBtn.offsetWidth));
+                const y = Math.floor(Math.random() * (window.innerHeight - submitBtn.offsetHeight));
+                submitBtn.style.left = `${x}px`;
+                submitBtn.style.top = `${y}px`;
+                submitBtn.style.position = 'absolute';
+            }
+        });
+
+        submitBtn.addEventListener('click', (e) => {
+            if (agreement.value !== 'yes') {
+                e.preventDefault();
+                alert('Please agree to the terms and conditions.');
+            }
+            else {
+                window.location.href = 'love.html';
+            }
+        });
+    </script>
+</body>
+</html>
